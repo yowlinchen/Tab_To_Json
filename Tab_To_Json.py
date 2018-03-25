@@ -30,10 +30,11 @@ for i in items:
         for j in header:
             temp2 = re.search('^\s*(.*?)\s*$',temp[temp_cnt]) #Get rid of the start & end spaces / the content is to match as little as possible so can get rid of spaces in the end
             temp2_txt = temp2.group(1) # Get only the content 
+            temp3_txt = temp2_txt.replace("\"","\'") # Additional Check to Replace double quote to single quote to avoid Json format error
             if temp_cnt == temp_len - 1:
-                FO.write('\"'+ j + '\"' + ':' + '\"' + temp2_txt + '\"' + '\n\t')
+                FO.write('\"'+ j + '\"' + ':' + '\"' + temp3_txt + '\"' + '\n\t')
             else:
-                FO.write('\"'+ j + '\"' + ':' + '\"' + temp2_txt + '\",' + '\n\t')
+                FO.write('\"'+ j + '\"' + ':' + '\"' + temp3_txt + '\",' + '\n\t')
             temp_cnt = temp_cnt + 1
         FO.write('}\n')
     else: # if cnt not 0 or not data_entry, print normally
@@ -44,10 +45,11 @@ for i in items:
         for j in header:
             temp2 = re.search('^\s*(.*?)\s*$',temp[temp_cnt]) #Get rid of the start & end spaces / the content is to match as little as possible so can get rid of spaces in the end
             temp2_txt = temp2.group(1) # Get only the content
+            temp3_txt = temp2_txt.replace("\"","\'") # Additional Check to Replace double quote to single quote to avoid Json format error
             if temp_cnt == temp_len - 1: # last entry is without comma
-                FO.write('\"'+ j + '\"' + ':' + '\"' + temp2_txt + '\"' + '\n\t')
+                FO.write('\"'+ j + '\"' + ':' + '\"' + temp3_txt + '\"' + '\n\t')
             else: 
-                FO.write('\"'+ j + '\"' + ':' + '\"' + temp2_txt + '\",' + '\n\t')
+                FO.write('\"'+ j + '\"' + ':' + '\"' + temp3_txt + '\",' + '\n\t')
             temp_cnt = temp_cnt + 1
         FO.write('},\n\t')
     cnt = cnt + 1
