@@ -28,10 +28,12 @@ for i in items:
         FO.write('{\n\t')
         temp_len = len(header)
         for j in header:
+            temp2 = re.search('^\s*(.*?)\s*$',temp[temp_cnt]) #Get rid of the start & end spaces / the content is to match as little as possible so can get rid of spaces in the end
+            temp2_txt = temp2.group(1) # Get only the content 
             if temp_cnt == temp_len - 1:
-                FO.write('\"'+ j + '\"' + ':' + '\"' + temp[temp_cnt] + '\"' + '\n\t')
+                FO.write('\"'+ j + '\"' + ':' + '\"' + temp2_txt + '\"' + '\n\t')
             else:
-                FO.write('\"'+ j + '\"' + ':' + '\"' + temp[temp_cnt] + '\",' + '\n\t')
+                FO.write('\"'+ j + '\"' + ':' + '\"' + temp2_txt + '\",' + '\n\t')
             temp_cnt = temp_cnt + 1
         FO.write('}\n')
     else: # if cnt not 0 or not data_entry, print normally
@@ -40,10 +42,12 @@ for i in items:
         FO.write('{\n\t')
         temp_len = len(header)
         for j in header:
+            temp2 = re.search('^\s*(.*?)\s*$',temp[temp_cnt]) #Get rid of the start & end spaces / the content is to match as little as possible so can get rid of spaces in the end
+            temp2_txt = temp2.group(1) # Get only the content
             if temp_cnt == temp_len - 1: # last entry is without comma
-                FO.write('\"'+ j + '\"' + ':' + '\"' + temp[temp_cnt] + '\"' + '\n\t')
+                FO.write('\"'+ j + '\"' + ':' + '\"' + temp2_txt + '\"' + '\n\t')
             else: 
-                FO.write('\"'+ j + '\"' + ':' + '\"' + temp[temp_cnt] + '\",' + '\n\t')
+                FO.write('\"'+ j + '\"' + ':' + '\"' + temp2_txt + '\",' + '\n\t')
             temp_cnt = temp_cnt + 1
         FO.write('},\n\t')
     cnt = cnt + 1
