@@ -21,7 +21,7 @@ data_entry = int(len(items)) - 1
 cnt = 0
 for i in items:
     if cnt == 0: # if cnt = 0, split the header
-        header = i.split('\t')
+        header = i.split()
     elif cnt == data_entry: # if cnt = data_entry, we have reached the end.  Print a little in different format
         temp = i.split('\t')
         temp_cnt = 0
